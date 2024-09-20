@@ -2,7 +2,7 @@ POST localhost:8080/api/alerts
 Content-Type: application/json
 
 {
-  "level": 1,
+  "level": 2,
   "message": "hello"
 }
 

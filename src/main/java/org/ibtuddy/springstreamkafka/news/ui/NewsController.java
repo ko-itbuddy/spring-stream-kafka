@@ -1,9 +1,9 @@
-package org.ibtuddy.springstreamkafka.rest;
+package org.ibtuddy.springstreamkafka.news.ui;
 
 
 import jakarta.validation.Valid;
-import org.ibtuddy.springstreamkafka.kafka.payload.News;
-import org.ibtuddy.springstreamkafka.kafka.producer.NewsEventProducer;
+import org.ibtuddy.springstreamkafka.news.event.kafka.News;
+import org.ibtuddy.springstreamkafka.news.event.kafka.NewsEventProducer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

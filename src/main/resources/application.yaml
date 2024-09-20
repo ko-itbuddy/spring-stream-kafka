@@ -4,7 +4,7 @@ spring:
 
   cloud:
     function:
-      definition: news;alert
+      definition: news;createAlertKafkaEvent;deleteAlertKafkaEvent
     stream:
       default-binder: kafka
       kafka:
@@ -14,24 +14,35 @@ spring:
             auto-create-topics: true
       bindings:
         news-in-0:
-          destination: spring.cloud.stream.news
+          destination: news
           content-type: application/json
           group: newsConsumerGroup
           consumer:
-            concurrency: 2
+            concurrency: 5
         news-out-0:
-          destination: spring.cloud.stream.news
+          destination: news
           content-type: application/json
           producer:
             partition-key-expression: 'headers["partitionKey"]'
-        alert-in-0:
-          destination: spring.cloud.stream.alert
+        createAlertKafkaEvent-in-0:
+          destination: createAlertKafkaEvent
           content-type: application/json
           group: alertConsumerGroup
           consumer:
-            concurrency: 2
-        alert-out-0:
-          destination: spring.cloud.stream.alert
+            concurrency: 5
+        createAlertKafkaEvent-out-0:
+          destination: createAlertKafkaEvent
+          content-type: application/json
+          producer:
+            partition-key-expression: 'headers["partitionKey"]'
+        deleteAlertKafkaEvent-in-0:
+          destination: deleteAlertKafkaEvent
+          content-type: application/json
+          group: alertConsumerGroup
+          consumer:
+            concurrency: 5
+        deleteAlertKafkaEvent-out-0:
+          destination: deleteAlertKafkaEvent
           content-type: application/json
           producer:
             partition-key-expression: 'headers["partitionKey"]'

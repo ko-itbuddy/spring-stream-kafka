@@ -1,4 +1,4 @@
-package org.ibtuddy.springstreamkafka.rest;
+package org.ibtuddy.springstreamkafka.alert.ui;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

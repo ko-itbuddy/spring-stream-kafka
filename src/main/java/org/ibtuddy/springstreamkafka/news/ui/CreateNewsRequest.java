@@ -1,4 +1,4 @@
-package org.ibtuddy.springstreamkafka.rest;
+package org.ibtuddy.springstreamkafka.news.ui;
 
 import jakarta.validation.constraints.NotBlank;
 

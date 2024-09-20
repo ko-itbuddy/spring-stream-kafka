@@ -1,4 +1,4 @@
-package org.ibtuddy.springstreamkafka.kafka;
+package org.ibtuddy.springstreamkafka;
 
 import java.util.Map;
 import org.springframework.boot.web.error.ErrorAttributeOptions;

@@ -1,8 +1,7 @@
-package org.ibtuddy.springstreamkafka.kafka.consumer;
+package org.ibtuddy.springstreamkafka.news.event.kafka;
 
 import java.util.function.Consumer;
 import lombok.extern.slf4j.Slf4j;
-import org.ibtuddy.springstreamkafka.kafka.payload.News;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.KafkaHeaders;
