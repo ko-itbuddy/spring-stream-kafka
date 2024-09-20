@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: spring-stream-kafka
+
+  cloud:
+    function:
+      definition: news;alert
+    stream:
+      default-binder: kafka
+      kafka:
+        streams:
+          binder:
+            brokers: 'localhost:9021'
+            auto-create-topics: true
+      bindings:
+        news-in-0:
+          destination: spring.cloud.stream.news
+          content-type: application/json
+          group: newsConsumerGroup
+          consumer:
+            concurrency: 2
+        news-out-0:
+          destination: spring.cloud.stream.news
+          content-type: application/json
+          producer:
+            partition-key-expression: 'headers["partitionKey"]'
+        alert-in-0:
+          destination: spring.cloud.stream.alert
+          content-type: application/json
+          group: alertConsumerGroup
+          consumer:
+            concurrency: 2
+        alert-out-0:
+          destination: spring.cloud.stream.alert
+          content-type: application/json
+          producer:
+            partition-key-expression: 'headers["partitionKey"]'
+
+
+management.endpoints.web.exposure.include: beans,env,health,info,metrics,mappings
+management.endpoint.health.show-details: always
+
+logging:
+  level:
+    org.apache.kafka.clients.consumer.internals.ConsumerCoordinator: WARN
