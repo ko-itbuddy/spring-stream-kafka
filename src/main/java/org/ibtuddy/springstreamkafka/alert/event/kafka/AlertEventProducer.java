@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
+import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class AlertEventProducer {
         log.info("Sending Alert '{}' to topic '{}'", createAlertKafkaEvent, createAlertKafkaEventTopic);
 
         Message<CreateAlertKafkaEvent> message = MessageBuilder.withPayload(createAlertKafkaEvent)
-                                                               .setHeader("partitionKey", createAlertKafkaEvent.id())
+                                                               .setHeader(KafkaHeaders.KEY, createAlertKafkaEvent.id())
                                                                .build();
         streamBridge.send("createAlertKafkaEvent-out-0", message);
     }
@@ -34,7 +35,7 @@ public class AlertEventProducer {
         log.info("Sending Alert '{}' to topic '{}'", deleteAlertKafkaEvent, deleteAlertKafkaEventTopic);
 
         Message<DeleteAlertKafkaEvent> message = MessageBuilder.withPayload(deleteAlertKafkaEvent)
-                                                               .setHeader("partitionKey", deleteAlertKafkaEvent.id())
+                                                               .setHeader(KafkaHeaders.KEY, deleteAlertKafkaEvent.id())
                                                                .build();
         streamBridge.send("deleteAlertKafkaEvent-out-0", message);
     }
